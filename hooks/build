@@ -1,7 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-SCALA212_VERSION="$(grep -oP '(?<=def scala212 = ")[^"]*(?<!")' project/Settings.scala)"
-SCALA211_VERSION="$(grep -oP '(?<=def scala211 = ")[^"]*(?<!")' project/Settings.scala)"
+git clone https://github.com/almond-sh/almond.git -b $SOURCE_BRANCH
+
+SCALA212_VERSION="$(grep -oP '(?<=def scala212 = ")[^"]*(?<!")' almond/project/Settings.scala)"
+SCALA211_VERSION="$(grep -oP '(?<=def scala211 = ")[^"]*(?<!")' almond/project/Settings.scala)"
+VERSION="$(git -C almond describe --tags --abbrev=0 --match 'v*' | sed 's/^v//')"
 
 docker build --build-arg SCALA_VERSIONS="$SCALA211_VERSION $SCALA212_VERSION" -t $IMAGE_NAME .
 docker build --build-arg SCALA_VERSIONS="$SCALA211_VERSION" -t $IMAGE_NAME-$SCALA211_VERSION .
