@@ -1,9 +1,8 @@
 #!/bin/bash
 
-SCALA212_VERSION="$(grep -oP '(?<=def scala212 = ")[^"]*(?<!")' almond/project/Settings.scala)"
-SCALA211_VERSION="$(grep -oP '(?<=def scala211 = ")[^"]*(?<!")' almond/project/Settings.scala)"
-ALMOND_VERSION="$(git -C almond describe --tags --abbrev=0 --match 'v*' | sed 's/^v//')"
-
-docker push $IMAGE_NAME-$SCALA211_VERSION
-docker push $IMAGE_NAME-$SCALA212_VERSION
+docker push $IMAGE_NAME-scala-$SCALA211_VERSION
+docker push $IMAGE_NAME-scala-$SCALA212_VERSION
 docker push $IMAGE_NAME
+
+docker tag $IMAGE_NAME $DOCKER_REPO:latest
+docker push $DOCKER_REPO:latest
