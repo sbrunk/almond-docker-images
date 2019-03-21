@@ -1,7 +1,3 @@
 #!/usr/bin/env bash
 
-git clone https://github.com/almond-sh/almond.git -b $SOURCE_BRANCH
-
-export SCALA212_VERSION="$(grep -oP '(?<=def scala212 = ")[^"]*(?<!")' almond/project/Settings.scala)"
-export SCALA211_VERSION="$(grep -oP '(?<=def scala211 = ")[^"]*(?<!")' almond/project/Settings.scala)"
-export ALMOND_VERSION="$(git -C almond describe --tags --abbrev=0 --match 'v*' | sed 's/^v//')"
+git clone https://github.com/almond-sh/almond.git -b $SOURCE_BRANCH  --depth 1

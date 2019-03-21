@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+source ./vars.sh
 
 docker push $IMAGE_NAME-scala-$SCALA211_VERSION
 docker push $IMAGE_NAME-scala-$SCALA212_VERSION
