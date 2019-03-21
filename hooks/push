@@ -6,3 +6,4 @@ ALMOND_VERSION="$(git -C almond describe --tags --abbrev=0 --match 'v*' | sed 's
 
 docker push $IMAGE_NAME-$SCALA211_VERSION
 docker push $IMAGE_NAME-$SCALA212_VERSION
+docker push $IMAGE_NAME
